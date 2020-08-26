@@ -70,3 +70,4 @@ The Swagger Spec for the APIs can be found here:<br/>
 1. Can concurrency cause problems?
 1. Size limits?
 1. Throttling and rate-limiting are necessary. User based access token can be used to, among other things, throttle users based on their allocated quota.
+1. The canary uses the Redis instance as the repo for the URIs (lol). Ideally every endpoint creation should register the endpoint in a telemetry system for http health check. 
