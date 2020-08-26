@@ -33,6 +33,17 @@ services:
     networks:
       - backend
 
+  # Client
+  client:
+    build:
+      context: client
+      dockerfile: Dockerfile
+    tty: true
+    restart: unless-stopped
+    depends_on:
+      - app
+    networks:
+      - backend
 
   # Redis Service
   redis:
