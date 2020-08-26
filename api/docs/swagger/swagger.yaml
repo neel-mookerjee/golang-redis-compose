@@ -1,0 +1,87 @@
+definitions:
+  main.EndpointOutput:
+    properties:
+      appurl:
+        type: string
+      note:
+        type: string
+    type: object
+host: http://localhost:8080/
+info:
+  contact:
+    email: ARghanil@gmail.com
+    name: Arghanil
+  description: Provide a service endpoint that will generate a unique URI
+  license: {}
+  title: Sample Golang RESTFul APIs
+  version: "0.1"
+paths:
+  /:
+    get:
+      description: Unique Endpoint to get the last submitted payload
+      operationId: GetLastContent
+      produces:
+      - application/json
+      responses:
+        "302":
+          description: Found
+        "404":
+          description: Endpoint not found
+        "500":
+          description: Internal server error
+      summary: Unique Endpoint for GET
+      tags:
+      - retrieve
+    post:
+      consumes:
+      - application/json
+      description: Unique Endpoint to submit a payload
+      operationId: SubmitContent
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: submitted
+        "400":
+          description: Bad request body
+        "404":
+          description: Endpoint not found
+        "500":
+          description: Internal server error
+      summary: Unique Endpoint for POST
+      tags:
+      - submit
+  /generate:
+    put:
+      description: Create an Endpoint which is unique and accepts GET/POST
+      operationId: GenerateUniqueEndpoint
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: 'Endpoint created: url is returned'
+          schema:
+            $ref: '#/definitions/main.EndpointOutput'
+            type: object
+        "500":
+          description: 'There was as error during processing your request. '
+      summary: Create a Unique Endpoint
+      tags:
+      - generate
+  /health:
+    get:
+      description: Unique Endpoint healthcheck
+      operationId: Health
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Status:healthy
+        "404":
+          description: Status:unhealthy
+        "500":
+          description: Status:unhealthy
+      summary: Unique Endpoint health
+      tags:
+      - health
+swagger: "2.0"
